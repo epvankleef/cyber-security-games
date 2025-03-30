@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Catcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="flash-overlay" id="flash-overlay"></div>
+    <div class="scoreboard">Score: <span id="score">0</span></div>
+    <div class="timer">Tijd: <span id="timer">90</span>s</div>
+    <div class="game-container">
+        <h1>Fake News Catcher</h1>
+        <div class="news-box">
+            <h2 id="news-title">Laden...</h2>
+            <img id="news-image" src="" alt="Nieuws afbeelding" style="display: none;">
+            <p id="news-text">Laden...</p>
+        </div>
+        <div class="buttons-container">
+            <button id="real-btn" class="big-button real">Echt</button>
+            <button id="fake-btn" class="big-button fake">Nep</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("slide-in-right"); // Slide-in effect bij het laden
+
+        const startButton = document.getElementById("start-btn"); // Knop om naar game.html te gaan
+        if (startButton) {
+            startButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                document.body.classList.add("slide-out-left", "hide");
+                setTimeout(() => {
+                    window.location.href = "game.html"; // Ga na de animatie naar game.html
+                }, 500);
+            });
+        }
+
+        const stopButton = document.getElementById("stop-btn"); // Knop om terug naar index.html te gaan
+        if (stopButton) {
+            stopButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                document.body.classList.add("slide-out-left", "hide");
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Ga na de animatie terug naar index.html
+                }, 500);
+            });
+        }
+    });
+</script>

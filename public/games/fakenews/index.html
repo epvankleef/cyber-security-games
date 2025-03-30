@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startmenu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 0, 0.3), rgba(0, 0, 255, 0.3));
+            animation: backgroundMove 6s infinite linear;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                transform: translateX(-10%) translateY(-10%);
+            }
+
+            50% {
+                transform: translateX(10%) translateY(10%);
+            }
+
+            100% {
+                transform: translateX(-10%) translateY(-10%);
+            }
+        }
+
+        .menu {
+            position: relative;
+            text-align: center;
+            color: white;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .start-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(45deg, #ff7300, #ff0000);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="menu">
+        <h1>Fake News Catcher</h1>
+        <div class="info-box">
+            <p>📌 <strong>Speluitleg:</strong></p>
+            <ul>
+                <li>🔹 Je krijgt 10 vragen om te beantwoorden.</li>
+                <li>⏳ Je hebt **90 seconden** om zoveel mogelijk vragen te beantwoorden.</li>
+                <li>🏆 Score wordt linksboven weergegeven.</li>
+                <li>✅ Klik "Echt" of ❌ "Nep" om te antwoorden.</li>
+            </ul>
+        </div>
+        <button class="start-btn" onclick="startGame()">Start Spel</button>
+    </div>
+
+    <script>
+        function startGame() {
+            window.location.href = "game.html";
+        }
+    </script>
+
+</body>
+
+</html>
