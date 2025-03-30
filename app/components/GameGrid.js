@@ -22,18 +22,9 @@ const GameGrid = () => {
 
 const handleGameClick = (id, route, afterFlip = false) => {
   if (!afterFlip) {
-    setClickedItem(id); // start flip
+    setClickedItem(id); // flip starten
   } else {
-    const game = securityGames.find((g) => g.id === id);
-
-    if (game?.externalUrl) {
-      window.open(game.externalUrl, '_blank');
-      setTimeout(() => {
-        setClickedItem(null); // flip terugdraaien na korte delay
-      }, 500); // mag ook 1000ms zijn voor effect
-    } else {
-      router.push(`/games/${route}`);
-    }
+    router.push(`/games/${route}`); // ná de flip pas navigeren
   }
 };
 
