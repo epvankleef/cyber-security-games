@@ -39,25 +39,26 @@ export default function GamePage({ params }) {
     );
   }
 
-  // Lokale game
   const src = `/games/${game.route}/index.html`;
 
   return (
-    <div className="relative w-screen h-screen bg-black">
-      {/* Terugknop met Lucide icoon */}
-      <button
-        onClick={() => router.push('/')}
-        className="absolute top-4 right-4 z-50 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out"
-        aria-label="Terug naar overzicht"
-      >
-        <ArrowLeft size={18} />
-        Terug
-      </button>
+    <div className="w-screen h-screen bg-black flex flex-col">
+      {/* Vaste headerbalk */}
+      <div className="w-full bg-[#1F2937] p-2 flex justify-end z-50">
+        <button
+          onClick={() => router.push('/')}
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out"
+          aria-label="Terug naar overzicht"
+        >
+          <ArrowLeft size={18} />
+          Terug
+        </button>
+      </div>
 
       {/* Game iframe */}
       <iframe
         src={src}
-        className="w-full h-full border-none"
+        className="flex-grow w-full border-none"
         allowFullScreen
         title={game.name}
       />

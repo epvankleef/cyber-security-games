@@ -20,15 +20,35 @@ const GameGrid = () => {
     });
   }, []);
 
-  const handleGameClick = (id, route, afterFlip = false) => {
-    if (!afterFlip) {
-      setClickedItem(id);
-    } else {
+const handleGameClick = (id, route, afterFlip = false) => {
+  if (!afterFlip) {
+    setClickedItem(id); // start flip
+  } else {
+    const game = securityGames.find((g) => g.id === id);
+
+    if (game?.externalUrl) {
+      window.open(game.externalUrl, '_blank');
       setTimeout(() => {
-        router.push(`/games/${route}`);
-      }, 250); // extra marge zodat flip volledig afspeelt
+        setClickedItem(null); // flip terugdraaien na korte delay
+      }, 500); // mag ook 1000ms zijn voor effect
+    } else {
+      router.push(`/games/${route}`);
     }
-  };
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   return (
     <div style={{ backgroundColor: '#1F2937' }} className="min-h-screen">
