@@ -1,8 +1,11 @@
 'use client';
 import { use, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
 import { securityGames } from '../../data/securityGames';
 
 export default function GamePage({ params }) {
+  const router = useRouter();
   const { route } = use(params);
   const game = securityGames.find((g) => g.route === route);
 
@@ -40,10 +43,24 @@ export default function GamePage({ params }) {
   const src = `/games/${game.route}/index.html`;
 
   return (
-    <iframe
-      src={src}
-      className="w-screen h-screen border-none"
-      allowFullScreen
-    />
+    <div className="relative w-screen h-screen bg-black">
+      {/* Terugknop met Lucide icoon */}
+      <button
+        onClick={() => router.push('/')}
+        className="absolute top-4 right-4 z-50 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out"
+        aria-label="Terug naar overzicht"
+      >
+        <ArrowLeft size={18} />
+        Terug
+      </button>
+
+      {/* Game iframe */}
+      <iframe
+        src={src}
+        className="w-full h-full border-none"
+        allowFullScreen
+        title={game.name}
+      />
+    </div>
   );
 }

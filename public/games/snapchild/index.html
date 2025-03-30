@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapChild</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <h1>SnapChild</h1>
+            <div class="score-display" id="score">Score: 0</div>
+        </div>
+        
+        <div class="app-content">
+            <div id="game-intro">
+                <div class="instructions">
+                    <h2>Hoe te spelen</h2>
+                    <p>In dit spel zie je berichten die kunnen komen van iemand die probeert je online te manipuleren of te groomen. Jouw taak is om de veiligste reactie te kiezen.</p>
+                    <ul>
+                        <li>Je krijgt 10 punten voor elke veilige reactie</li>
+                        <li>Je verliest 5 punten voor onveilige keuzes</li>
+                        <li>Leer waarschuwingssignalen in online gesprekken te herkennen</li>
+                    </ul>
+                </div>
+                
+                <label for="player-name">Voer je naam in om te beginnen:</label>
+                <input type="text" id="player-name" placeholder="Jouw naam">
+                <button id="start-game" class="btn">Start Spel</button>
+                
+                <div class="snap-actions">
+                    <div class="action-icon">📷</div>
+                    <div class="action-icon">💬</div>
+                    <div class="action-icon">👥</div>
+                </div>
+            </div>
+            
+            <div id="game-screen">
+                <div class="progress-display" id="progress">Scenario 1 van 10</div>
+                
+                <div class="message-app">
+                    <div class="chat-messages">
+                        <div class="message-bubble" id="groomer-message">
+                            <!-- Message content will be inserted here -->
+                        </div>
+                        
+                        <p class="respond-text">Hoe reageer je?</p>
+                        
+                        <button class="option-btn" id="option-0">Optie 1</button>
+                        <button class="option-btn" id="option-1">Optie 2</button>
+                        <button class="option-btn" id="option-2">Optie 3</button>
+                        
+                        <div class="feedback-container" id="feedback-container" style="display: none;">
+                            <p id="feedback-text">Feedback verschijnt hier</p>
+                        </div>
+                        
+                        <button id="next-scenario" class="btn" style="display: none;">Volgend Bericht</button>
+                    </div>
+                </div>
+                
+                <div class="snap-actions">
+                    <div class="action-icon">📷</div>
+                    <div class="action-icon">💬</div>
+                    <div class="action-icon">👥</div>
+                </div>
+            </div>
+            
+            <div id="game-over">
+                <div class="bitmoji-container">
+                    <div class="bitmoji-placeholder">🏆</div>
+                </div>
+                
+                <div class="game-complete">
+                    <h2>Spel Voltooid!</h2>
+                    <p>Bedankt voor het spelen, <span id="player-name-display"></span>!</p>
+                    <p>Je eindscore: <strong id="final-score">0</strong></p>
+                </div>
+                
+                <div class="high-scores">
+                    <h3>Topscores</h3>
+                    <ol id="high-scores-list">
+                        <!-- High scores will be inserted here -->
+                    </ol>
+                </div>
+                
+                <div class="instructions">
+                    <h3>Onthoud:</h3>
+                    <ul>
+                        <li>Deel nooit persoonlijke informatie met onbekenden online</li>
+                        <li>Wees voorzichtig met mensen die om foto's of video's vragen</li>
+                        <li>Spreek niet af met iemand die je alleen online kent</li>
+                        <li>Vertel een vertrouwde volwassene als iets je ongemakkelijk maakt</li>
+                        <li>Vertrouw op je instinct - als iets niet goed voelt, is er waarschijnlijk iets mis</li>
+                    </ul>
+                    <p><strong>Onthoud:</strong> Als iemand online je ongemakkelijk laat voelen, praat dan meteen met een vertrouwde volwassene!</p>
+                </div>
+                
+                <button id="play-again" class="btn">Opnieuw Spelen</button>
+                
+                <div class="snap-actions">
+                    <div class="action-icon">📷</div>
+                    <div class="action-icon">💬</div>
+                    <div class="action-icon">👥</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

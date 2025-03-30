@@ -34,7 +34,7 @@ const GameCard = ({ game, index, visible, clickedItem, handleClick }) => {
 
           {/* Onder: overlay met vaste hoogte */}
           <div className="bg-black/40 text-white text-[11px] px-2 py-2 text-center h-[50px]">
-            <p className="text-xs leading-tight line-clamp-2">{game.description}</p>
+            <p className="text-sm leading-tight line-clamp-2">{game.description}</p>
           </div>
         </div>
 

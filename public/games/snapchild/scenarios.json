@@ -1,0 +1,82 @@
+[
+  {
+    "message": "Hé daar! Ik zag je profiel en je lijkt me echt cool. Hoe oud ben je?",
+    "options": [
+      { "text": "Ik ben 12 jaar oud.", "correct": false, "feedback": "Het is beter om je leeftijd niet te delen met onbekenden online." },
+      { "text": "Waarom wil je mijn leeftijd weten?", "correct": true, "feedback": "Goede vraag! Wees voorzichtig wanneer iemand meteen vraagt naar persoonlijke informatie." },
+      { "text": "Ik voel me niet comfortabel om die informatie te delen.", "correct": true, "feedback": "Uitstekende keuze! Je hoeft geen persoonlijke informatie te delen met onbekenden." }
+    ]
+  },
+  {
+    "message": "Je bent zo volwassen voor je leeftijd! We zouden eens moeten afspreken, ik kan je meenemen om te winkelen.",
+    "options": [
+      { "text": "Dat klinkt leuk! Waar zullen we afspreken?", "correct": false, "feedback": "Spreek nooit af met iemand die je alleen online hebt ontmoet." },
+      { "text": "Nee bedankt, ik spreek niet af met mensen van internet.", "correct": true, "feedback": "Goede beslissing! Het is onveilig om af te spreken met onbekenden van internet." },
+      { "text": "Ik moet eerst aan mijn ouders vragen.", "correct": true, "feedback": "Slim gedacht! Betrek altijd volwassenen die je vertrouwt bij online interacties." }
+    ]
+  },
+  {
+    "message": "Vertel je ouders niet dat we praten. Ze zouden onze bijzondere vriendschap niet begrijpen.",
+    "options": [
+      { "text": "Oké, het kan ons geheimpje zijn!", "correct": false, "feedback": "Geheimen met onbekenden online zijn een groot waarschuwingssignaal." },
+      { "text": "Waarom mag ik het niet aan mijn ouders vertellen?", "correct": true, "feedback": "Goede vraag! Iemand die vraagt om geheimen te houden voor je ouders heeft mogelijk slechte bedoelingen." },
+      { "text": "Ik vertel mijn ouders altijd met wie ik online praat.", "correct": true, "feedback": "Uitstekend! Open zijn naar ouders of vertrouwde volwassenen over online interacties is erg belangrijk." }
+    ]
+  },
+  {
+    "message": "Je bent zo mooi/knap. Kun je me een foto van jezelf sturen?",
+    "options": [
+      { "text": "Natuurlijk, hier is een selfie die ik net heb gemaakt!", "correct": false, "feedback": "Het is niet veilig om persoonlijke foto's te delen met onbekenden online." },
+      { "text": "Nee, ik stuur geen foto's naar mensen die ik niet ken.", "correct": true, "feedback": "Goede beslissing! Je privacy beschermen is belangrijk." },
+      { "text": "Waarom wil je mijn foto?", "correct": true, "feedback": "Goed dat je vragen stelt! Wees altijd voorzichtig wanneer iemand om foto's vraagt." }
+    ]
+  },
+  {
+    "message": "Ik weet dat we elkaar net online hebben ontmoet, maar ik voel echt een bijzondere connectie. Ik denk dat ik verliefd op je word.",
+    "options": [
+      { "text": "Ik voel hetzelfde!", "correct": false, "feedback": "Wees voorzichtig met mensen die heel snel diepe gevoelens claimen online." },
+      { "text": "We kennen elkaar nauwelijks. Dat lijkt me te snel.", "correct": true, "feedback": "Goed inzicht! Echte relaties hebben tijd nodig om zich te ontwikkelen." },
+      { "text": "Ik voel me niet comfortabel bij dit gesprek.", "correct": true, "feedback": "Uitstekende grenzen stellen! Vertrouw op je instinct wanneer iets niet goed voelt." }
+    ]
+  },
+  {
+    "message": "Ik zou graag videochatten met je, maar laten we onze camera's eerst uit laten. Het zal ons kleine spelletje zijn.",
+    "options": [
+      { "text": "Dat klinkt leuk!", "correct": false, "feedback": "Wees voorzichtig met ongewone verzoeken die tot ongemakkelijke situaties kunnen leiden." },
+      { "text": "Nee, ik videochat alleen met mensen die ik in het echt ken.", "correct": true, "feedback": "Goede grens! Veilig videochatten vereist duidelijke regels." },
+      { "text": "Waarom zouden we videochatten met camera's uit?", "correct": true, "feedback": "Goede vraag! Stel altijd vragen bij vreemde verzoeken." }
+    ]
+  },
+  {
+    "message": "Hebben je ouders je ooit echt boos gemaakt? De mijne begrijpen mij ook niet. We zouden samen weg kunnen lopen.",
+    "options": [
+      { "text": "Ja! Laten we een plan maken!", "correct": false, "feedback": "Dit is een groot waarschuwingssignaal. Iemand die je aanmoedigt om van huis weg te lopen is gevaarlijk." },
+      { "text": "Iedereen heeft wel eens onenigheid met zijn ouders, maar weglopen is geen oplossing.", "correct": true, "feedback": "Uitstekend perspectief! Familieconflicten gebeuren, maar veilige oplossingen betrekken geen vreemden." },
+      { "text": "Ik moet nu gaan.", "correct": true, "feedback": "Goed instinct! Jezelf uit zorgwekkende gesprekken terugtrekken is slim." }
+    ]
+  },
+  {
+    "message": "Ik kan je helpen beroemd te worden online. Ik ken mensen in de industrie. Ik heb alleen wat foto's nodig om hen je potentieel te laten zien.",
+    "options": [
+      { "text": "Dat klinkt geweldig! Wat voor foto's heb je nodig?", "correct": false, "feedback": "Wees zeer voorzichtig met beloften van roem of speciale kansen online." },
+      { "text": "Nee bedankt, ik ben niet geïnteresseerd.", "correct": true, "feedback": "Goede beslissing! Dit soort aanbiedingen zijn vaak oplichting of erger." },
+      { "text": "Als je legitiem bent, kun je met mijn ouders praten.", "correct": true, "feedback": "Slim gedacht! Echte kansen zullen geen probleem hebben met betrokkenheid van ouders." }
+    ]
+  },
+  {
+    "message": "Je lijkt vandaag van streek. Is alles oké thuis? Je kunt me alles vertellen, ik zal je geheimen bewaren.",
+    "options": [
+      { "text": "De dingen gaan echt slecht thuis. Niemand begrijpt me.", "correct": false, "feedback": "Wees voorzichtig met het delen van persoonlijke problemen met onbekenden online." },
+      { "text": "Het gaat prima, gewoon druk met school.", "correct": true, "feedback": "Goed gedaan door het vermijden van het delen van persoonlijke details wanneer je je kwetsbaar voelt." },
+      { "text": "Als ik van streek ben, praat ik met mensen die ik in het echt ken.", "correct": true, "feedback": "Uitstekend! Het hebben van ondersteuningssystemen in het echte leven is belangrijk." }
+    ]
+  },
+  {
+    "message": "Ik heb je een cadeau gestuurd in deze link. Klik erop om te zien wat ik voor je heb!",
+    "options": [
+      { "text": "Cool! *klikt op link*", "correct": false, "feedback": "Klik nooit op links van mensen die je niet goed kent. Ze kunnen virussen of ongepaste inhoud bevatten." },
+      { "text": "Nee bedankt, ik klik niet op links van mensen die ik niet goed ken.", "correct": true, "feedback": "Goede beslissing! Je digitale veiligheid beschermen is belangrijk." },
+      { "text": "Ik moet eerst aan mijn ouders vragen om deze link te controleren.", "correct": true, "feedback": "Slim gedacht! Laat altijd een vertrouwde volwassene links van vreemden controleren." }
+    ]
+  }
+] 

@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+#game-area {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    background-color: lightgray;
+    border: 2px solid black;
+}
+.target {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    cursor: pointer;
+}
+#question {
+    display: none;
+    margin-top: 20px;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
