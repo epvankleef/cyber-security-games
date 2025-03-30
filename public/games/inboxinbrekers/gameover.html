@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over - Inbox Inbrekers</title>
+    <style>
+        body {
+            background-image: url('gameover.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white; /* Tekstkleur buiten de box */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden; /* Voeg deze regel toe om scrollen te voorkomen */
+        }
+        .message-box {
+            background: rgb(0, 0, 0); /* Zwarte achtergrond met transparantie */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Rode schaduw */
+            max-width: 80%;
+            text-align: center;
+            color: black; /* Tekstkleur in de box */
+        }
+        .message-box h1, .message-box p {
+            color: rgb(255, 0, 0); /* Zorgt ervoor dat de tekst zwart is */
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white; /* Tekstkleur van de knop */
+            background-color: rgb(149, 26, 26);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px red;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay>
+        <source src="gameover.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <div class="message-box">
+        <h1>GAME OVER</h1>
+        <p>Je bent opgelicht, die email was nep. <br>
+            Wil je opnieuw beginnen?
+        </p>
+    </div>
+    <a href="index.html" class="button">Terug naar Home</a>
+</body>
+</html>

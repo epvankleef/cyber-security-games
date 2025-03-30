@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptoscam Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="phone">
+      <div class="screen">
+        <h1>Cryptoscam Simulator</h1>
+        <p>Kies een app om te starten</p>
+        <div class="apps">
+          <button class="app-button" id="victim-app" onclick="openGame()">
+            Crypto Rug Pull
+          </button>
+          <button class="app-button" id="victim-app" onclick="openGame2()">
+            Crypto Pump and Dump
+          </button>
+          <button class="app-button" id="victim-app" onclick="openGame3()">
+            BTC_game
+          </button>
+        </div>
+        <div id="result" class="result">
+          <p id="result-text">Welkom! Kies een app om te beginnen.</p>
+        </div>
+        <iframe
+          id="game-frame"
+          class="hidden"
+          width="100%"
+          height="600px"
+        ></iframe>
+      </div>
+    </div>
+    <script>
+      function openGame() {
+        location.href = "crypto market sim.html";
+      }
+      function openGame2() {
+        location.href = "pumpanddump.html";
+      }
+      function openGame3() {
+        location.href = "BTC_game.html";
+      }
+    </script>
+  </body>
+</html>

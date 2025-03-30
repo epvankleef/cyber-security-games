@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over - Inbox Inbrekers</title>
+    <style>
+        html, body {
+            overflow: hidden; /* Voorkomt scrollen */
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: url('gameover2.png'); /* Achtergrondafbeelding */
+            background-size: cover; /* Bedekt de hele pagina */
+            background-position: center; /* Centreert de afbeelding */
+            font-family: Arial, sans-serif;
+            color: red; /* Tekstkleur buiten de box */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .message-box {
+            background: rgb(0, 0, 0); /* Zwarte achtergrond met transparantie */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red; /* Rode schaduw */
+            max-width: 80%;
+            text-align: center;
+            color: red; /* Tekstkleur in de box */
+        }
+        .message-box h1, .message-box p {
+            color: red; /* Rode tekst in de box */
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: black; /* Tekstkleur van de knop */
+            background-color: red; /* Achtergrondkleur van de knop */
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px red; /* Rode schaduw */
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: darkred; /* Donkerder rood bij hover */
+        }
+    </style>
+</head>
+<audio autoplay>
+    <source src="gameover2.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<body>
+    <div class="message-box">
+        <h1>GAME OVER</h1>
+        <p>Je hebt een echte email verwijdert!<br>
+            Wil je opnieuw beginnen?
+        </p>
+    </div>
+    <a href="index.html" class="button">Terug naar Home</a>
+</body>
+</html>

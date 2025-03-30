@@ -1,0 +1,34 @@
+	Thema: Cryptoscams
+	Doelgroep: Jongeren
+	Game: Javascript 
+	Doel: Leren om gaan Cryptoscams 
+	Device: Mobiel (Verplicht)
+
+
+Idee:
+Cryptosimulatie die aantrekkelijk is voor jongeren om te laten zien hoe cryptoscams werken en bij verschillende uitkomsten van de game uitlegt waarom en wat er was gebeurt om erover te leren.
+Dit gebeurt via een neppe coin waar je van allebij de kanten (Scammer en slachtoffer kunt simuleren en inzetten wat er gebeurt.
+Om de game aantrekkelijk te maken voor jongeren doen we een 9
+
+=================================================================================================================================================================================================
+
+De game is de simulatie van een Telefoon waar je verschillende apps kunt openen om uiteindelijk te kunnen simuleren hoe iemand je kan cryptoscammen
+
+Soorten scams om te simuleren:
+Bitcoin investment schemes. The FBI stated investment schemes are the most reported type of fraud. ...
+Rug pull scams. ...
+Romance scams. ...
+Phishing scams. ...
+Man-in-the-middle attacks. ...
+Social media cryptocurrency giveaway scams. ...
+Ponzi schemes. ... 
+
+=================================================================================================================================================================================================
+
+De game zal:
+   
+    Een neppe telefooninterface hebben met apps
+    slachtoffer perspectief laten kiezen.
+    Interactie bieden met scams zoals phishing, Ponzi, en rug pulls.
+    Educatieve uitleg geven na elke scam-simulatie.
+

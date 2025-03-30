@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Market Simulator - Pump and Dump</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 375px;
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #00cc99;
+      }
+      .alert {
+        color: #ff4d4d;
+        margin-top: 5px;
+      }
+      .trade input,
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      canvas {
+        background: #1e1e1e;
+        border: 1px solid #444;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crypto Pump and Dump</h1>
+      <p>Coin Prijs: <span id="price" class="price">50.00 EUR</span></p>
+      <p>Budget: <span id="budget">100.00 EUR</span></p>
+      <canvas id="cryptoChart" width="300" height="200"></canvas>
+      <div class="trade">
+        <input type="number" id="amount" placeholder="EUR" step="1" min="1" />
+        <button onclick="buyCrypto()">Koop</button>
+        <button onclick="sellCrypto()">Verkoop</button>
+      </div>
+      <p id="alert" class="alert"></p>
+    </div>
+
+    <button class="app-button" id="victim-app" onclick="openHome()">
+      Homepage
+    </button>
+
+    <script>
+      let price = 50;
+      let budget = 100;
+      let holdings = 0;
+      let priceHistory = [50];
+      let isPump = true;
+
+      const ctx = document.getElementById("cryptoChart").getContext("2d");
+      const cryptoChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: Array(10).fill(""),
+          datasets: [
+            {
+              label: "Coin Prijs (EUR)",
+              data: priceHistory,
+              borderColor: "#00cc99",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: { grid: { color: "#444" } },
+            y: { grid: { color: "#444" }, beginAtZero: true },
+          },
+        },
+      });
+
+      function updateUI() {
+        document.getElementById("price").textContent = `${price.toFixed(
+          2
+        )} EUR`;
+        document.getElementById("budget").textContent = `${budget.toFixed(
+          2
+        )} EUR`;
+        if (isPump) {
+          document.getElementById("alert").textContent =
+            "🚀 De prijs stijgt snel!";
+        } else {
+          document.getElementById("alert").textContent =
+            "💥 Dump! De prijs stort in!";
+        }
+      }
+
+      function updatePrice() {
+        if (isPump) {
+          price += Math.random() * 20;
+          if (price > 150) isPump = false;
+        } else {
+          price -= Math.random() * 50;
+          if (price < 10) price = 10;
+        }
+
+        price = parseFloat(price.toFixed(2));
+        priceHistory.push(price);
+        if (priceHistory.length > 10) priceHistory.shift();
+        cryptoChart.data.datasets[0].data = priceHistory;
+        cryptoChart.update();
+        updateUI();
+      }
+
+      function buyCrypto() {
+        const amount = parseFloat(document.getElementById("amount").value);
+        if (amount > budget || amount <= 0) {
+          alert("Ongeldige invoer of onvoldoende saldo.");
+          return;
+        }
+        const coinsBought = amount / price;
+        holdings += coinsBought;
+        budget -= amount;
+        updateUI();
+        alert(`Je hebt ${coinsBought.toFixed(8)} coins gekocht.`);
+      }
+
+      function sellCrypto() {
+        if (holdings === 0) {
+          alert("Je hebt niets om te verkopen!");
+          return;
+        }
+        const earnings = holdings * price;
+        budget += earnings;
+        holdings = 0;
+        updateUI();
+        alert(`Je hebt verkocht voor €${earnings.toFixed(2)}.`);
+      }
+
+      setInterval(updatePrice, 2000);
+      updateUI();
+
+      function openHome() {
+        location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

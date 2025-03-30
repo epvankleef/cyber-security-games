@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox Inbrekers</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #00ff00;
+            position: relative;
+            z-index: 2;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            font-size: 1.5em;
+            color: #000;
+            background-color: #00ff00;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ff00;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 1s ease-out forwards;
+            position: relative;
+            z-index: 2;
+        }
+        .button:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .button:hover {
+            background-color: #009900;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 1em;
+            z-index: 2;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="achtergrond.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <audio autoplay loop>
+        <source src="home.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <h1>Inbox Inbrekers</h1>
+    <a href="game.html" class="button">Start</a>
+    <a href="instructies.html" class="button">Instructies</a>
+    <footer>Hackathon 2025; Ahmet, Sem, Furkan en Lars</footer>
+</body>
+</html>

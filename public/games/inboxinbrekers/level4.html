@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox Inbrekers - Game</title>
+    <style>
+        body {
+            background-image: url('game.png'); /* Achtergrondafbeelding */
+            background-size: cover; /* Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+            background-position: center; /* Centreert de afbeelding */
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white;
+            max-width: 80%;
+            text-align: left;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .button {
+            width: 120px;
+            padding: 15px;
+            font-size: 1.5em;
+            color: black;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px;
+        }
+        .nep {
+            background-color: red;
+            animation: nepAnimation 1s infinite alternate;
+            animation-delay: 0.4s;
+        }
+        .echt {
+            background-color: limegreen;
+            animation: echtAnimation 1s infinite alternate;
+        }
+        @keyframes nepAnimation {
+            0% { box-shadow: 0 0 15px rgb(86, 22, 22); }
+            50% { box-shadow: 0 0 50px rgb(255, 115, 0); }
+            100% { box-shadow: 0 0 15px rgb(105, 33, 33); }
+        }
+        @keyframes echtAnimation {
+            0% { box-shadow: 0 0 15px limegreen; }
+            50% { box-shadow: 0 0 50px rgb(166, 231, 166); }
+            100% { box-shadow: 0 0 15px limegreen; }
+        }
+        .nep:hover { background-color: darkred; }
+        .echt:hover { background-color: green; }
+        .timer {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+        }
+    </style>
+    <script>
+        let emailType = "nep";
+        let timeLeft = 20;
+
+        function updateTimer() {
+            const timerElement = document.getElementById("timer");
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 10) {
+                timerElement.style.color = "red";
+            }
+
+            if (timeLeft <= 0) {
+                window.location.href = "gameover3.html";
+            } else {
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        function checkEmail(choice) {
+            if ((emailType === "nep" && choice === "nep") || (emailType === "echt" && choice === "echt")) {
+                window.location.href = "level5.html";
+            } else {
+                window.location.href = "gameover.html";
+            }
+        }
+
+        window.onload = function () {
+            updateTimer();
+            const audio = new Audio("game.mp3");
+            audio.loop = true;
+            audio.play().catch(() => console.warn("Autoplay is geblokkeerd door de browser."));
+        };
+    </script>
+</head>
+<body>
+    <div class="timer" id="timer">20</div>
+    <div class="email-box">
+        <p><strong>Van:</strong> lNG@gmail.com</p>
+        <p><strong>Onderwerp:</strong> Schulden</p>
+        <p>U MOET NU BETALEN.<br>
+        <br>U heeft een schuld van 700 euro IVM rood staan.<br>
+        <br>Betaal dit binnen 7 dagen, of u krijgt een deurwaarder aan de deur.<br>
+        <br>Maak het geld over aan <br><strong>paypal.com/AleksandrPetrov</strong></p>
+        <img src="ing.png" style="max-width: 30%; display: block; margin-top: 5px;">
+    </div>
+    <div class="button-container">
+        <button class="button nep" onclick="checkEmail('nep')">NEP</button>
+        <button class="button echt" onclick="checkEmail('echt')">ECHT</button>
+    </div>
+</body>
+</html>

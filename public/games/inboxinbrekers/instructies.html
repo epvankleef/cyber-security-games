@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructies - Inbox Inbrekers</title>
+    <style>
+        body {
+            background: url('instructies.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+            padding: 30px;
+            overflow: hidden; /* Voeg deze regel toe om scrollen te voorkomen */
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        p {
+            font-size: 1.2em;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #e60909;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #000;
+            background-color: lime;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        .button:hover {
+            background-color: #009900;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="instructies.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <h1>Instructies</h1> <!-- Titel staat direct zonder animatie -->
+    <p id="typed-text"></p>
+    <a href="index.html" class="button">Terug naar Home</a>
+
+    <script>
+        const text = "Een hacker stuurt je emails.\n\nKijk naar details als taalgebruik, email-adressen en correcte informatie.\n\nAls je denkt dat een email nep is, klik dan op de knop \"NEP\". Als je denkt dat het echt is, klik dan op \"ECHT\".\n\nJe hebt 20 seconden voor je gehackt wordt.";
+        const textElement = document.getElementById('typed-text');
+
+        let textIndex = 0;
+
+        function typeText() {
+            if (textIndex < text.length) {
+                textElement.innerHTML += text.charAt(textIndex);
+                textIndex++;
+                setTimeout(typeText, 20); // (20ms per letter)
+            }
+        }
+
+        typeText(); // Start de animatie
+    </script>
+</body>
+</html>

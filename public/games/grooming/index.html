@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Alert - Grooming Awareness Game</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); 
+      margin: 0; 
+      padding: 0; 
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 { 
+      text-align: center; 
+      color: #ffffff; 
+      margin-top: 20px; 
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5); 
+    }
+
+    #game { 
+      max-width: 600px; 
+      margin: 20px auto; 
+      background: white; 
+      border-radius: 10px; 
+      padding: 20px; 
+      box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+    }
+
+    .message { 
+      display: flex; 
+      align-items: flex-start; 
+      padding: 10px; 
+      border-radius: 10px; 
+      margin: 10px 0; 
+    }
+
+    .message img { 
+      width: 40px; 
+      height: 40px; 
+      border-radius: 50%; 
+      margin-right: 10px; 
+    }
+
+    .bot { 
+      background-color: #e0e0e0; 
+      text-align: left; 
+    }
+
+    .user { 
+      background-color: #d0f0d0; 
+      text-align: right; 
+      flex-direction: row-reverse; 
+    }
+
+    .user img { 
+      margin-left: 10px; 
+      margin-right: 0; 
+    }
+
+    button { 
+      padding: 10px 20px; 
+      margin: 10px 5px; 
+      border: none; 
+      border-radius: 8px; 
+      background-color: #ff3366; 
+      color: white; 
+      cursor: pointer; 
+    }
+
+    button:hover { 
+      background-color: #e62e5c; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Grooming</h1>
+  <div id="game">
+    <div id="chat"></div>
+    <div id="choices"></div>
+  </div>
+
+  <script>
+    const chatEl = document.getElementById('chat');
+    const choicesEl = document.getElementById('choices');
+
+    const dialogue = [
+      { text: "Hoi! Je lijkt me echt leuk. Hoe oud ben je?", image: "diddy.jpg", choices: ["Ik ben 14", "Waarom vraag je dat?"] },
+      { text: "14? Oh dat is jong... maar dat geeft niks toch?", image: "diddy.jpg", choices: ["Dat vind ik wel raar.", "Haha nee hoor."] },
+      { text: "Stiekem vind ik je echt heel mooi. Wil je foto's sturen?", image: "diddy.jpg", choices: ["Nee, dat voelt niet goed.", "Oké, wat voor foto's?"] },
+      { text: "Je hoeft het aan niemand te vertellen. Dit blijft ons geheim.", image: "diddy.jpg", choices: ["Ik blokkeer je.", "Oké, ons geheim."] },
+    ];
+
+    let step = 0;
+    let madeUnsafeChoices = 0;
+
+    function addMessage(text, sender, img) {
+      const msg = document.createElement('div');
+      msg.className = `message ${sender}`;
+      const imageEl = document.createElement('img');
+      imageEl.src = img;
+      msg.appendChild(imageEl);
+
+      const span = document.createElement('span');
+      span.textContent = text;
+      msg.appendChild(span);
+      chatEl.appendChild(msg);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    function showStep() {
+      if (step < dialogue.length) {
+        const current = dialogue[step];
+        addMessage(current.text, 'bot', current.image);
+
+        choicesEl.innerHTML = '';
+        current.choices.forEach(choice => {
+          const btn = document.createElement('button');
+          btn.textContent = choice;
+          btn.onclick = () => makeChoice(choice);
+          choicesEl.appendChild(btn);
+        });
+      } else {
+        choicesEl.innerHTML = '';
+        if (madeUnsafeChoices >= 3) {
+          addMessage("Let op! Je bent meerdere keren meegegaan met gevaarlijke verzoeken. Dit kan leiden tot hele nare situaties.", 'bot', 'politie.png');
+          setTimeout(() => {
+            addMessage("⚠️ Praat altijd met een volwassene die je vertrouwt. Of bel met de Kindertelefoon: 0800-0432.", 'bot', 'politie.jpg');
+          }, 1500);
+        } else {
+          addMessage("Goed gedaan! Onthoud: deel nooit persoonlijke info met onbekenden.", 'bot', 'politie.jpg');
+        }
+      }
+    }
+
+    function makeChoice(choice) {
+      addMessage(choice, 'user', 'puber.jpg');
+
+      if (choice.toLowerCase().includes("blokkeer")) {
+        addMessage("Je hebt de juiste keuze gemaakt!", 'bot', 'politie.jpg');
+        choicesEl.innerHTML = '';
+        return;
+      }
+
+      const lower = choice.toLowerCase();
+      if (
+        lower.includes("haha nee") ||
+        lower.includes("foto") ||
+        lower.includes("ons geheim")
+      ) {
+        madeUnsafeChoices++;
+      }
+
+      step++;
+      setTimeout(showStep, 1000);
+    }
+
+    showStep();
+  </script>
+</body>
+</html>

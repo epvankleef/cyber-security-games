@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Market Simulator - Rug Pull</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* Algemene mobiele layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      width: 375px;
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90vh;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00cc99;
+    }
+    .alert {
+      color: #ff4d4d;
+      margin-top: 5px;
+    }
+    .trade input, button {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    canvas {
+      background: #1e1e1e;
+      border: 1px solid #444;
+      margin-top: 20px;
+    }
+    .homepage-button {
+      margin-top: auto;
+      padding: 12px 20px;
+      background-color: #00cc99;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crypto Market Simulator</h1>
+      <div class="info">
+        <p>Coin Prijs: <span id="btc-price" class="price">50.00 EUR</span></p>
+        <p>Budget: <span id="budget">100.00 EUR</span></p>
+        <p>Holdings: <span id="holdings">0.00000000 BTC</span></p>
+        
+        <!-- Netto winst/verlies (in euro) -->
+        <p id="net-result" class="profit">Winst: €0.00</p>
+        
+        <p id="market-alert" class="alert"></p>
+        <p id="result-counter">Wins: 0, Losses: 0</p>
+      </div>
+
+      <canvas id="cryptoChart" width="300" height="200"></canvas>
+
+      <div class="trade">
+        <input type="number" id="amount" placeholder="EUR" step="1" min="1" />
+        <button onclick="buyCrypto()">Koop BTC</button>
+        <button onclick="sellCrypto()">Verkoop BTC</button>
+      </div>
+      <button class="app-button" id="victim-app" onclick="openHome()">
+        Homepage
+      </button>
+    </div>
+
+    <script>
+      // ----------------------------
+      //  Basis variabelen
+      // ----------------------------
+      let btcPrice = 50;        
+      let btcPriceHistory = [btcPrice];
+      let budget = 100;
+      let btcHolding = 0;
+      let averagePurchasePrice = 0; // Gewogen gemiddelde aankoopprijs
+      let marketCrashed = false;
+      let rugPullTimeout = null;   // Timer voor rug pull
+      let wins = 0, losses = 0;
+
+      // Houdt bij hoeveel euro we in totaal hebben uitgegeven (voor latere berekening)
+      let totalSpent = 0;
+
+      // ----------------------------
+      //  Chart.js - Donkere stijl
+      // ----------------------------
+      const ctx = document.getElementById("cryptoChart").getContext("2d");
+      const cryptoChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: Array(10).fill(""),
+          datasets: [{
+            label: "BTC Prijs (EUR)",
+            data: btcPriceHistory,
+            borderColor: "#00cc99", // Groen-blauwe lijn
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 0,        // Geen puntjes op de lijn
+          }]
+        },
+        options: {
+          responsive: false,
+          scales: {
+            x: {
+              ticks: { color: "#ccc" },
+              grid: { color: "#444" },
+            },
+            y: {
+              beginAtZero: true,
+              suggestedMin: 0,
+              suggestedMax: 100,
+              ticks: { color: "#ccc" },
+              grid: { color: "#444" },
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: "#ccc" }
+            }
+          }
+        }
+      });
+
+      // ----------------------------
+      //  UI updates
+      // ----------------------------
+      function updateUI(change = 0) {
+        document.getElementById("btc-price").textContent = btcPrice.toFixed(2) + " EUR";
+        document.getElementById("budget").textContent = budget.toFixed(2) + " EUR";
+        document.getElementById("holdings").textContent = btcHolding.toFixed(8) + " BTC";
+        
+        // Huidige waarde van je holdings
+        let holdingsValue = btcHolding * btcPrice;
+        // Netto resultaat = (Budget + huidige holdings) - totale inleg
+        let netProfit = (budget + holdingsValue) - totalSpent;
+        
+        const netResultElem = document.getElementById("net-result");
+        if (netProfit < 0) {
+          // Verlies
+          netResultElem.textContent = `Verlies: €${Math.abs(netProfit).toFixed(2)}`;
+          netResultElem.classList.remove("profit");
+          netResultElem.classList.add("loss");
+        } else {
+          // Winst of break-even
+          netResultElem.textContent = `Winst: €${netProfit.toFixed(2)}`;
+          netResultElem.classList.remove("loss");
+          netResultElem.classList.add("profit");
+        }
+
+        if (marketCrashed) {
+          document.getElementById("market-alert").textContent = "🚨 Rug pull! De markt is gecrasht.";
+        } else {
+          document.getElementById("market-alert").textContent = "";
+        }
+        document.getElementById("result-counter").textContent = `Wins: ${wins}, Losses: ${losses}`;
+      }
+
+      // ----------------------------
+      //  Markt-fluctuaties (optioneel)
+      // ----------------------------
+      let marketInterval = setInterval(() => {
+        if (!marketCrashed) {
+          let randomChange = (Math.random() - 0.5) * 50; // Kleine schommeling
+          updatePrice(randomChange);
+        }
+      }, 5000);
+
+      function updatePrice(change) {
+        if (marketCrashed) return;
+        btcPrice += change;
+        btcPriceHistory.push(btcPrice);
+        if (btcPriceHistory.length > 10) btcPriceHistory.shift();
+        cryptoChart.data.datasets[0].data = btcPriceHistory;
+        cryptoChart.update();
+        updateUI(change);
+      }
+
+      // ----------------------------
+      //  Rug pull
+      // ----------------------------
+      function crashMarket() {
+        marketCrashed = true;
+        clearInterval(marketInterval);
+        btcPrice = 1; // Directe crash: 1 BTC = 1 EUR
+        btcPriceHistory.push(btcPrice);
+        if (btcPriceHistory.length > 10) btcPriceHistory.shift();
+        cryptoChart.data.datasets[0].data = btcPriceHistory;
+        cryptoChart.update();
+        updateUI();
+      }
+
+      function startRugPullTimer() {
+        if (rugPullTimeout) return;
+        rugPullTimeout = setTimeout(() => {
+          if (btcHolding > 0 && !marketCrashed) {
+            crashMarket();
+            alert("Rug pull! De markt is gecrasht. Je holdings zijn nu vrijwel waardeloos.");
+          }
+        }, 5000);
+      }
+
+      // ----------------------------
+      //  Koop BTC
+      // ----------------------------
+      function buyCrypto() {
+        if (marketCrashed) {
+          alert("De markt is gecrasht. Je kunt niet meer kopen.");
+          return;
+        }
+        let euroAmount = parseFloat(document.getElementById("amount").value);
+        if (euroAmount > 0 && euroAmount <= budget) {
+          let btcBought = euroAmount / btcPrice;
+          // Update totale inleg
+          totalSpent += euroAmount;
+          // Update gemiddelde aankoopprijs
+          if (btcHolding === 0) {
+            averagePurchasePrice = btcPrice;
+          } else {
+            averagePurchasePrice =
+              ((btcHolding * averagePurchasePrice) + (btcBought * btcPrice)) /
+              (btcHolding + btcBought);
+          }
+          budget -= euroAmount;
+          btcHolding += btcBought;
+          updateUI();
+          startRugPullTimer();
+          alert(`Je hebt ${btcBought.toFixed(8)} BTC gekocht voor €${euroAmount.toFixed(2)}. De rug pull komt eraan!`);
+        } else {
+          alert("Ongeldige invoer of onvoldoende saldo.");
+        }
+      }
+
+      // ----------------------------
+      //  Verkoop BTC -
+      // ----------------------------
+      function sellCrypto() {
+        if (btcHolding <= 0) {
+          alert("Je hebt geen BTC om te verkopen!");
+          return;
+        }
+        let saleValue = btcHolding * btcPrice;
+        // Bereken winst/verlies t.o.v. gemiddelde aankoopprijs
+        let costBasis = btcHolding * averagePurchasePrice;
+        let profit = saleValue - costBasis;
+
+        if (profit > 0) {
+          wins++;
+        } else if (profit < 0) {
+          losses++;
+        }
+        
+        budget += saleValue;
+        btcHolding = 0;
+        averagePurchasePrice = 0;
+        // We resetten de rugPullTimeout als je alles verkoopt
+        clearTimeout(rugPullTimeout);
+        rugPullTimeout = null;
+        
+        updateUI();
+        alert(`Je hebt verkocht voor €${saleValue.toFixed(2)}. Winst/Verlies op deze trade: €${profit.toFixed(2)}`);
+      }
+
+      // Init
+      updateUI();
+
+      function openHome() {
+        location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
+

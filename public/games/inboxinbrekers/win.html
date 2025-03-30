@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gewonnen - Inbox Inbrekers</title>
+    <style>
+        body {
+            background: url('win.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .message-box {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px limegreen;
+            max-width: 90%;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            animation: popIn 1.5s ease-out;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px limegreen; }
+            to { text-shadow: 0 0 20px white; }
+        }
+        
+        p {
+            font-size: 1.5em;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            color: white;
+            background-color: limegreen;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 50px;
+            box-shadow: 0 0 15px limegreen;
+            margin-top: 30px;
+            transition: all 0.3s ease-in-out;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .button:hover {
+            background-color: green;
+            box-shadow: 0 0 25px green;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio element to play win.mp3 -->
+    <audio autoplay preload="auto">
+        <source src="win.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="message-box">
+        <h1>GEWONNEN!</h1>
+        <p>De hacker zit achter de tralies.<br>Jij wordt niet opgelicht!</p>
+    </div>
+    <a href="index.html" class="button">Terug naar Home</a>
+</body>
+</html>
