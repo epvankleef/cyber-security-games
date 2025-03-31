@@ -1,0 +1,143 @@
+ p {
+    font-style: italic;
+ }
+
+ .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+ .header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.home-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #110688;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #3424b8;
+}
+
+ body {
+  font-family: Arial, sans-serif;
+  padding: 3rem;
+}
+
+body.easy {
+  background-image: url(./Images/level1back.jpg);
+}
+
+body.medium {
+  background-image: url(./Images/level2.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.hard {
+  background-image: url(./Images/level3back.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.link-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  cursor: url('./Images/fishhook.png') 0 0, auto;
+  transition: background-color 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.link-card:hover {
+  background-color: #fce8e8;
+}
+
+.link-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #110688;
+  text-decoration: none;
+  pointer-events: none; /* makes the text unclickable */
+}
+
+.link-url {
+  font-size: 1.4rem;
+  color: #006621;
+  pointer-events: none; /* also makes URL unclickable */
+}
+
+@media (max-width: 500px) {
+  .link-card-wrapper {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.3rem;
+  }
+
+  .home-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .link-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    cursor: url('./Images/fishhook.png') 0 0, auto;
+    transition: background-color 0.2s ease;
+    margin-bottom: 1.5rem;
+  }
+  
+  .link-card:hover {
+    background-color: #fce8e8;
+  }
+  
+  .link-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #110688;
+    text-decoration: none;
+    pointer-events: none; /* makes the text unclickable */
+  }
+
+  .link-url {
+    font-size: 1rem;
+    color: #006621;
+    pointer-events: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

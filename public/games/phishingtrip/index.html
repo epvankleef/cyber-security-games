@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Trip Home Screen</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: linear-gradient(
+            to bottom,
+            #87CEEB 0%,  /*lage lucht */
+            #87CEEB 58%,  /*hoge lucht */
+            #2e6593 58%,  /*bovenlaag zee */
+            #3974a4 62%, /*transition zee */
+            #4682B4 62%,  /*donker blauw */
+            #4682B4 100%  /* donker blauw onderaan zee  */
+          );
+          font-family: Arial, sans-serif;
+          position: relative;
+          overflow: hidden;
+          flex-direction: column;
+          text-align: center;
+        }
+    
+        /* Wolken */
+        body::before,
+        body::after {
+          content: '';
+          position: absolute;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 50%;
+          animation: float 15s infinite linear;
+        }
+    
+        body::before {
+          width: 150px;
+          height: 60px;
+          top: 15%;
+          left: 20%;
+        }
+    
+        body::after {
+          width: 120px;
+          height: 40px;
+          top: 25%;
+          right: 25%;
+          animation-delay: -7s;
+        }
+    
+        @keyframes float {
+          from { transform: translateX(-100%); }
+          to { transform: translateX(1000%); }
+        }
+    
+        .cloud {
+          position: absolute;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 50%;
+        }
+    
+        .cloud1 {
+          width: 150px; height: 60px;
+          top: 15%; left: 20%;
+          animation: float 20s infinite linear;
+        }
+        .cloud2 {
+          width: 120px; height: 40px;
+          top: 25%; right: 25%;
+          animation: float 15s infinite linear;
+          animation-delay: -7s;
+        }
+        .cloud3 {
+          width: 180px; height: 70px;
+          top: 10%; left: 40%;
+          animation: float 25s infinite linear;
+          animation-delay: -15s;
+        }
+        .cloud4 {
+          width: 100px; height: 35px;
+          top: 30%; right: 10%;
+          animation: float 18s infinite linear;
+          animation-delay: -3s;
+        }
+        .cloud5 {
+          width: 130px; height: 45px;
+          top: 20%; left: 60%;
+          animation: float 22s infinite linear;
+          animation-delay: -10s;
+        }
+    
+        .container {
+          z-index: 2;
+          padding: 20px;
+        }
+    
+        h1 {
+          color: white;
+          font-size: 3em;
+          margin-bottom: 30px;
+        }
+    
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+    
+        .level-button {
+          padding: 15px 30px;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: transform 0.2s, background-color 0.2s;
+        }
+    
+        .level-button:hover {
+          transform: scale(1.1);
+        }
+    
+        .easy { background-color: #2ecc71; color: white; }
+        .medium { background-color: #f1c40f; color: white; }
+        .hard { background-color: #e74c3c; color: white; }
+    
+        .boat {
+          position: absolute;
+          right: 5%;
+          bottom: 40%;
+          width: 250px;
+          height: auto;
+          z-index: 1;
+          opacity: 0.95;
+          animation: boatFloat 2s ease-in-out infinite alternate;
+        }
+
+@keyframes boatFloat {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+    </style>
+</head>
+<img src="Images/boat.png" alt="Boat" class="boat">
+<body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    <div class="cloud cloud5"></div>
+    <div class="container">
+    
+        <!-- Knoppen naar difficulti levels -->
+        <h1>Phishing Trip</h1>          
+        <div class="button-container">
+            <button class="level-button easy" onclick="golvl1()">Easy</button>
+            <button class="level-button medium" onclick="golvl2()">Medium</button>
+            <button class="level-button hard" onclick="golvl3()">Hard</button>
+        </div>
+    </div>
+
+    <script>
+  function golvl1() {
+    window.location.href = "Phishing_Easy.html";
+  }
+
+  function golvl2() {
+    window.location.href = "Phishing_Medium.html";
+  }
+
+  function golvl3() {
+    window.location.href = "Phishing_Extreme.html";
+  }
+    </script>
+</body>
+</html>
+<style>
+    
