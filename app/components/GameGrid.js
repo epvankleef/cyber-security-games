@@ -35,13 +35,21 @@ const handleGameClick = (id, route, afterFlip = false) => {
 
 
 
-        <h1 className="text-3xl font-bold text-center mb-4 text-white tracking-wide">
-          Cyber Security Games
-        </h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-white tracking-wide">
+  Cyber Security Games
+</h1>
         
-<div
+{/* <div
   className="grid gap-3 justify-center"
   style={{ gridTemplateColumns: 'repeat(auto-fill, 200px)', maxWidth: '860px', margin: '0 auto' }}
+> */}
+<div
+  className="grid gap-3 justify-center"
+  style={{ 
+    gridTemplateColumns: 'repeat(auto-fill, 160px)', 
+    maxWidth: '800px', 
+    margin: '0 auto' 
+  }}
 >
 
 

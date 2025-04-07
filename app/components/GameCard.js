@@ -8,7 +8,8 @@ const GameCard = ({ game, index, visible, clickedItem, handleClick }) => {
   return (
     <div
       data-id={game.id}
-      className="w-[200px] h-[200px] rounded-lg shadow-sm cursor-pointer transition-all duration-500 ease-out overflow-hidden hover:shadow-lg hover:scale-105"
+      className="w-[160px] h-[160px] rounded-lg shadow-sm cursor-pointer transition-all duration-500 ease-out overflow-hidden hover:shadow-lg hover:scale-105"
+
       style={{
         perspective: '1000px',
         opacity: visible ? 1 : 0,
@@ -29,12 +30,12 @@ const GameCard = ({ game, index, visible, clickedItem, handleClick }) => {
           {/* Midden: icoon + titel */}
           <div className="flex flex-col items-center justify-center text-center px-2 py-1">
             <game.icon size={30} className="text-gray-900 mb-1" />
-            <h2 className="text-base font-bold text-gray-900">{game.name}</h2>
+            <h2 className="text-sm font-bold text-gray-900">{game.name}</h2>
           </div>
 
           {/* Onder: beschrijving - tekst gecentreerd */}
           <div className="bg-black/40 text-white text-[11px] px-2 py-1 h-[60px] flex items-center justify-center text-center">
-            <p className="text-sm leading-tight line-clamp-3 overflow-hidden">
+            <p className="text-xs leading-tight line-clamp-3 overflow-hidden">
               {game.description}
             </p>
           </div>
