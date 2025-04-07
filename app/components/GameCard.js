@@ -2,16 +2,15 @@
 import React from 'react';
 
 const GameCard = ({ game, index, visible, clickedItem, handleClick }) => {
-  const rowPosition = index % 2;
-  const delay = rowPosition * 50;
+  const delay = index * 50;
   const isClicked = clickedItem === game.id;
 
   return (
     <div
-      key={game.id}
       data-id={game.id}
-      className="aspect-square rounded-lg shadow-sm cursor-pointer perspective transition-all duration-500 ease-out overflow-hidden"
+      className="w-[200px] h-[200px] rounded-lg shadow-sm cursor-pointer transition-all duration-500 ease-out overflow-hidden hover:shadow-lg hover:scale-105"
       style={{
+        perspective: '1000px',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
         transitionDelay: `${delay}ms`
@@ -19,22 +18,25 @@ const GameCard = ({ game, index, visible, clickedItem, handleClick }) => {
       onClick={() => handleClick(game.id, game.route)}
     >
       <div
-        className={`relative w-full h-full border-2 border-black/80 transition-transform duration-700 transform-style-preserve-3d ${isClicked ? 'rotate-y-180' : ''}`}
+        className={`relative w-full h-full border-2 border-black/80 transition-transform duration-700 ${isClicked ? 'rotate-y-180' : ''}`}
+        style={{ transformStyle: 'preserve-3d' }}
         onTransitionEnd={() => {
           if (isClicked) handleClick(game.id, game.route, true);
         }}
       >
         {/* VOORKANT */}
-        <div className={`absolute inset-0 backface-hidden rounded-lg ${game.color} flex flex-col justify-between`}>
-          {/* Midden: icoon + titel gecentreerd */}
-          <div className="flex-1 flex flex-col items-center justify-center text-center px-2 pt-3 pb-1">
+        <div className={`absolute inset-0 backface-hidden rounded-lg ${game.color} grid grid-rows-[1fr_60px]`}>
+          {/* Midden: icoon + titel */}
+          <div className="flex flex-col items-center justify-center text-center px-2 py-1">
             <game.icon size={30} className="text-gray-900 mb-1" />
             <h2 className="text-base font-bold text-gray-900">{game.name}</h2>
           </div>
 
-          {/* Onder: overlay met vaste hoogte */}
-          <div className="bg-black/40 text-white text-[11px] px-2 py-2 text-center h-[50px]">
-            <p className="text-sm leading-tight line-clamp-2">{game.description}</p>
+          {/* Onder: beschrijving - tekst gecentreerd */}
+          <div className="bg-black/40 text-white text-[11px] px-2 py-1 h-[60px] flex items-center justify-center text-center">
+            <p className="text-sm leading-tight line-clamp-3 overflow-hidden">
+              {game.description}
+            </p>
           </div>
         </div>
 

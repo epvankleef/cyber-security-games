@@ -1,11 +1,11 @@
 import {
   Newspaper, Heart, Mail, Eye, ShieldQuestion,
-  Bitcoin, IdCard, MessageSquareMore, AlarmClock
+  Bitcoin, IdCard, MessageSquareMore, AlarmClock, Fish
 } from 'lucide-react';
 
 export const securityGames = [
   { id: 1, name: 'Fake News Catcher', icon: Newspaper, color: 'bg-red-400', route: 'fakenews', description: 'Ontmasker nepnieuws en leer kritisch denken!' },
-  { id: 2, name: 'Phishing Trip', icon: Newspaper, color: 'bg-blue-400', route: 'phishingtrip', description: ' Identificeer foute links, voorkom misleiding.' },
+  { id: 2, name: 'Phishing Trip', icon: Fish, color: 'bg-blue-400', route: 'phishingtrip', description: ' Identificeer foute links, voorkom misleiding.' },
   { id: 3, name: 'Liefde Liegt', icon: Heart, color: 'bg-green-400', route: 'liefdeliegt', description: 'Test je oog voor deepfakes.', externalUrl: 'https://phantomforge-software.itch.io/liefde-liegt' },
   { id: 4, name: 'Inbox Inbrekers', icon: Mail, color: 'bg-yellow-400', route: 'inboxinbrekers', description: 'Herken neppe phishingmails snel.' },
   { id: 5, name: 'Grooming', icon: Eye, color: 'bg-purple-500', route: 'grooming', description: 'Simuleer en herken foute intenties' },
