@@ -11,7 +11,7 @@ export const securityGames = [
   { id: 5, name: 'Grooming', icon: Eye, color: 'bg-purple-500', route: 'grooming', description: 'Simuleer en herken foute intenties' },
   { id: 6, name: 'Phishing Quiz', icon: ShieldQuestion, color: 'bg-pink-400', route: 'phishingquiz', description: 'Zijn de berichten echt? Test je kennis over phishing.' },
   { id: 7, name: 'Crypto Scam', icon: Bitcoin, color: 'bg-blue-500', route: 'cryptoscam', description: 'Leer crypto-oplichting op tijd herkennen' },
-  { id: 8, name: 'Data in gevaar!', icon: IdCard, color: 'bg-teal-400', route: 'datagevaar', description: 'Jouw data in gevaar, of niet?', externalUrl: 'https://hackaton.badeendensoep.nl/Pages/levelSelect.html' },
+  { id: 8, name: 'Escape Room', icon: IdCard, color: 'bg-teal-400', route: 'datagevaar', description: 'Jouw data in gevaar, of niet?', externalUrl: 'https://hackaton.badeendensoep.nl/Pages/levelSelect.html' },
   { id: 9, name: 'Snap Child', icon: MessageSquareMore, color: 'bg-orange-400', route: 'snapchild', description: 'Test je instinct bij online gesprekken' },
   { id: 10, name: 'Click Quiz', icon: AlarmClock, color: 'bg-green-400', route: 'clickquiz', description: 'Test je reflexen en cybersecuritykennis tegelijk.' },
   { id: 11, name: 'Fake News Game', icon: BookOpenCheck , color: 'bg-red-400', route: 'fakenewsgame', description: 'Ontmasker het nepnieuws: feit of fabel?' },
@@ -22,6 +22,7 @@ export const securityGames = [
 
 
 ];
+
 
 
 
